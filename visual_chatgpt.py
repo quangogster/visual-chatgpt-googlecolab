@@ -160,7 +160,10 @@ class ImageEditing:
         image_path, to_be_replaced_txt, replace_with_txt = input.split(",")
         print(f'replace_part_of_image: replace_with_txt {replace_with_txt}')
         original_image = Image.open(image_path)
+        print('image path: ', image_path)
+        print('to_be_replaced_txt: ', to_be_replaced_txt)
         mask_image = self.mask_former.inference(image_path, to_be_replaced_txt)
+        print('mask_image', mask_image)
         updated_image = self.inpainting(prompt=replace_with_txt, image=original_image, mask_image=mask_image).images[0]
         updated_image_path = get_new_image_name(image_path, func_name="replace-something")
         updated_image.save(updated_image_path)
