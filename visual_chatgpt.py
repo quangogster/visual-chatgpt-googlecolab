@@ -839,6 +839,7 @@ class ConversationBot:
             Tool(name="Replace Something From The Photo", func=self.edit.replace_part_of_image,
                  description="useful when you want to replace an object from the object description or location with another object from its description. "
                              "The input to this tool should be a comma seperated string of three, representing the image_path, the object to be replaced, the object to be replaced with "),
+
             Tool(name="Instruct Image Using Text", func=self.pix2pix.inference,
                  description="useful when you want to the style of the image to be like the text. like: make it look like a painting. or make it like a robot. "
                              "The input to this tool should be a comma seperated string of two, representing the image_path and the text. "),
