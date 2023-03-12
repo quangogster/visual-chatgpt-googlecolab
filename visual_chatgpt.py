@@ -801,7 +801,7 @@ class ConversationBot:
     def __init__(self):
         print("Initializing VisualChatGPT")
         self.llm = OpenAI(temperature=0)
-        # self.edit = ImageEditing(device="cuda:6")
+        self.edit = ImageEditing(device="cuda:6")
         self.i2t = ImageCaptioning(device="cuda:0")
         self.t2i = T2I(device="cuda:0")
         # self.image2canny = image2canny()
@@ -830,9 +830,9 @@ class ConversationBot:
             Tool(name="Generate Image From User Input Text", func=self.t2i.inference,
                  description="useful when you want to generate an image from a user input text and save it to a file. like: generate an image of an object or something, or generate an image that includes some objects. "
                              "The input to this tool should be a string, representing the text used to generate image. ")]
-            # Tool(name="Remove Something From The Photo", func=self.edit.remove_part_of_image,
-            #      description="useful when you want to remove and object or something from the photo from its description or location. "
-            #                  "The input to this tool should be a comma seperated string of two, representing the image_path and the object need to be removed. "),
+            Tool(name="Remove Something From The Photo", func=self.edit.remove_part_of_image,
+                 description="useful when you want to remove and object or something from the photo from its description or location. "
+                             "The input to this tool should be a comma seperated string of two, representing the image_path and the object need to be removed. "),
             # Tool(name="Replace Something From The Photo", func=self.edit.replace_part_of_image,
             #      description="useful when you want to replace an object from the object description or location with another object from its description. "
             #                  "The input to this tool should be a comma seperated string of three, representing the image_path, the object to be replaced, the object to be replaced with "),
